@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Builder;
 using Microsoft.AspNetCore.OData.Common;
@@ -17,6 +18,7 @@ namespace Microsoft.AspNetCore.OData
 {
     [ApiExplorerSettings(IgnoreApi = true)]
     // [Route("odata_/$metadata")]
+    [Authorize]
     public class MetadataController : ControllerBase
     {
         private static readonly Version _defaultEdmxVersion = new Version(4, 0);
