@@ -61,6 +61,7 @@ namespace Microsoft.AspNetCore.OData.Formatter
                 type = pageResult.Items.GetType();
             }
 
+            //_context.HttpContext.Request.Host = new HostString(GetBaseAddress().ToString());
             var urlHelper = UrlHelper(_context.HttpContext);
             var path = Request.ODataFeature().Path;
             IEdmNavigationSource targetNavigationSource = path?.NavigationSource;
@@ -191,12 +192,7 @@ namespace Microsoft.AspNetCore.OData.Formatter
 
         private Uri GetBaseAddress()
         {
-            //var uri = new Uri(_context.HttpContext.Request.GetDisplayUrl());
-            var baseAddress = _context.HttpContext.Request.GetDisplayUrl();
-
-            //uri.Scheme + "://" + uri.Host + (uri.Port == 80 ? "" : ":" + uri.Port) + "/" +
-            //"odata";//ODataRoute.Instance.RoutePrefix;
-
+            var baseAddress = (string)_context.HttpContext.Items["odataBaseAddress"];
             return baseAddress[baseAddress.Length - 1] != '/' ? new Uri(baseAddress + '/') : new Uri(baseAddress);
         }
 
