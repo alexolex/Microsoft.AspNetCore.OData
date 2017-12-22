@@ -77,7 +77,10 @@ namespace Microsoft.AspNetCore.OData.Builder
         /// </summary>
         public string FullyQualifiedName
         {
-            get { return Namespace + "." + Name; }
+            get
+            {
+                return Namespace + "." + Name; 
+            }
         }
 
         /// <summary>
